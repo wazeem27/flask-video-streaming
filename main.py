@@ -1,5 +1,7 @@
 from flask import Flask, render_template, Response, request
 from camera import VideoCamera
+import json
+import random
 
 
 app = Flask(__name__)
@@ -8,6 +10,11 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/temp')
+def temp():
+    temp = random.uniform(93.9, 101.3)
+    return str(round(temp, 2))+'F'
 
 def gen(camera):
     while True:
